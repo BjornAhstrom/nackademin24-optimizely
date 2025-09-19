@@ -14,6 +14,7 @@ public class StartPage : SitePageData
         GroupName = SystemTabNames.Content,
         Order = 10
     )]
+    [CultureSpecific]
 
     public virtual string Heading { get; set; } = string.Empty;
 }
