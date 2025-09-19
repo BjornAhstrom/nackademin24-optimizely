@@ -1,0 +1,17 @@
+﻿@using nackademin24_optimizely.Models.Pages
+@using nackademin24_optimizely.Models.ViewModels
+@model IPageViewModel<SitePageData>
+
+<IDOCTYPE html>
+
+    <html>
+        <head>
+            <title></title>
+            <meta name="description" value="@Html.Raw(Model.CurrentPage.MetaDescription)"/>
+        </head>
+        <body>
+            <div>
+                @RenderBody()
+            </div>
+        </body>
+    </html>
