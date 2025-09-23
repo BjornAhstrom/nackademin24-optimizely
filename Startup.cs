@@ -1,8 +1,11 @@
 using EPiServer.Cms.Shell;
+using EPiServer.Cms.Shell.UI.Configurations;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Scheduler;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
+using nackademin24_optimizely.Business.Services;
+using nackademin24_optimizely.Business.Services.Intefaces;
 
 namespace nackademin24_optimizely
 {
@@ -29,6 +32,9 @@ namespace nackademin24_optimizely
                 .AddCms()
                 .AddAdminUserRegistration()
                 .AddEmbeddedLocalization<Startup>();
+
+            services.Configure<UploadOptions>(x => { x.FileSizeLimit = 5248800; });
+            services.AddScoped<IDescendantService, DescendantService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

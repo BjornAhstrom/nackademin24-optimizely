@@ -41,4 +41,13 @@ public class StartPage : SitePageData
     )]
     [UIHint(UIHint.Image)]
     public virtual ContentReference Image { get; set; } = null!;
+
+
+    [Display(
+        GroupName = SystemTabNames.Content,
+        Order = 50
+    )]
+    [CultureSpecific]
+    [AllowedTypes(typeof(CarouselPage))]
+    public virtual ContentArea Carousel { get; set; } = null!;
 }
