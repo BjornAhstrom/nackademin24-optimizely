@@ -8,7 +8,7 @@ public static class PageDataExtensions
     {
         var internalUrl = UrlResolver.Current.GetUrl(content.ContentLink);
 
-        if (internalUrl == null)
+        if (internalUrl != null)
         {
             var url = new UrlBuilder(internalUrl);
             var friendlyUrl = UriSupport.AbsoluteUrlBySettings(url.ToString());

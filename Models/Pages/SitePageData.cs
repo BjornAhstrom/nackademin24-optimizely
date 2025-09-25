@@ -8,7 +8,7 @@ public class SitePageData : PageData
 {
     [Display(
         GroupName = Globals.GroupNames.MetaData,
-        Order = 100
+        Order = 120
     )]
     [CultureSpecific]
     public virtual string MetaDescription
@@ -26,8 +26,7 @@ public class SitePageData : PageData
         GroupName = SystemTabNames.Settings,
         Order = 10
     )]
-    [Editable( false )]
+    [Editable(false)]
     [CultureSpecific]
-
     public virtual DateTime? XmlSitemapDate { get; set; }
 }

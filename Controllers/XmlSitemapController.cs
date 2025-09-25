@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using nackademin24_optimizely.Business.Interfaces;
+using nackademin24_optimizely.Business.Services.Intefaces;
 using nackademin24_optimizely.Models.Pages;
 using nackademin24_optimizely.Models.ViewModels;
 
 namespace nackademin24_optimizely.Controllers;
 
-public class XmlSitemapController(IXmlSitemapService xmlSitemapService) : PageControllerBase<XmlSiteMap>
+public class XmlSitemapController(IXmlSitemapService sitemapService) : PageControllerBase<XmlSitemap>
 {
-    private readonly IXmlSitemapService _xmlSitemapService = xmlSitemapService;
+    private readonly IXmlSitemapService _sitemapService = sitemapService;
 
-    public IActionResult Index(XmlSiteMap currentPage)
+    public IActionResult Index(XmlSitemap currentPage)
     {
-        var model = new XmlSitemapViewmodel(currentPage)
+        var model = new XmlSitemapViewModel(currentPage)
         {
-            Pages = _xmlSitemapService.GetPages(currentPage),
+            Pages = _sitemapService.GetPages(currentPage)
         };
 
         return View(model);

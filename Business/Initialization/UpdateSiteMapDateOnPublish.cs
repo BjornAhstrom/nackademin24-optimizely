@@ -1,21 +1,22 @@
 ﻿using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
+using EPiServer.Initialization;
 using EPiServer.ServiceLocation;
 using nackademin24_optimizely.Models.Pages;
 
-namespace nackademin24_optimizely.Business;
+namespace nackademin24_optimizely.Business.Initialization;
 
 [InitializableModule]
-[ModuleDependency(typeof(EPiServer.Web.InitializationModule))]
-public class UpdateSiteMapDateOnPublish : IInitializableModule
+[ModuleDependency(typeof(CmsCoreInitialization))]
+public class UpdateSitemapDateOnPublish : IInitializableModule
 {
     public void Initialize(InitializationEngine context)
     {
         var events = ServiceLocator.Current.GetInstance<IContentEvents>();
-        events.PublishedContent += OnPublishingContent;
+        events.PublishingContent += OnPublishingContent;
     }
 
-    private void OnPublishingContent(object? sender, ContentEventArgs e)
+    private void OnPublishingContent(object sender, ContentEventArgs e)
     {
         if (e.Content is SitePageData page)
         {
@@ -25,6 +26,5 @@ public class UpdateSiteMapDateOnPublish : IInitializableModule
 
     public void Uninitialize(InitializationEngine context)
     {
-        throw new NotImplementedException();
     }
 }
