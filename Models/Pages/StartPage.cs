@@ -1,6 +1,6 @@
 ﻿using EPiServer.Web;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using nackademin24_optimizely.Business;
+using nackademin24_optimizely.Models.Blocks;
 using System.ComponentModel.DataAnnotations;
 
 namespace nackademin24_optimizely.Models.Pages;
@@ -8,6 +8,10 @@ namespace nackademin24_optimizely.Models.Pages;
 [ContentType(
     GUID = "6F77D127-5FB3-46AC-A157-ACF78FA077F5",
     GroupName = Globals.GroupNames.Spezialized
+)]
+[AvailableContentTypes(
+    Availability.Specific,
+    Include = [typeof(SettingsPage), typeof(ContainerPage), typeof(XmlSiteMap)]
 )]
 
 [ImageUrl("/pages/CMS-icon-page-02.png")]
@@ -48,6 +52,6 @@ public class StartPage : SitePageData
         Order = 50
     )]
     [CultureSpecific]
-    [AllowedTypes(typeof(CarouselPage))]
+    [AllowedTypes(typeof(CarouselPage), typeof(CarouselBlock))]
     public virtual ContentArea Carousel { get; set; } = null!;
 }
