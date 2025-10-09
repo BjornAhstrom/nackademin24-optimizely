@@ -12,10 +12,10 @@ namespace nackademin24_optimizely.Models.Pages;
 
    [ImageUrl("/pages/CMS-icon-page-02.png")]
     [AvailableContentTypes(
-        //Availability.Specific, 
-        //Include = [
-        //    typeof(ErrorPage)
-        //]
+        Availability.Specific,
+        Include = [
+            typeof(ErrorPage)
+        ]
     )]
     public class StartPage : SitePageData
     {

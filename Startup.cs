@@ -6,6 +6,7 @@ using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using nackademin24_optimizely.Business.Services;
 using nackademin24_optimizely.Business.Services.Intefaces;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace nackademin24_optimizely
 {
@@ -53,6 +54,16 @@ namespace nackademin24_optimizely
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapContent();
+            });
+
+            app.UseStatusCodePages(async context =>
+            {
+                if (context.HttpContext.Response.StatusCode == 404)
+                {
+                    context.HttpContext.Response.Redirect("/error");
+
+                    await Task.Yield();
+                }
             });
         }
     }
