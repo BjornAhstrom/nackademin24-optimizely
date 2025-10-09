@@ -6,7 +6,6 @@ using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using nackademin24_optimizely.Business.Services;
 using nackademin24_optimizely.Business.Services.Intefaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace nackademin24_optimizely
 {
@@ -31,12 +30,16 @@ namespace nackademin24_optimizely
             services
                 .AddCmsAspNetIdentity<ApplicationUser>()
                 .AddCms()
+                .AddFind()
                 .AddAdminUserRegistration()
                 .AddEmbeddedLocalization<Startup>();
+
+            services.AddServerSideBlazor();
 
             services.Configure<UploadOptions>(x => { x.FileSizeLimit = 5248800; });
             services.AddScoped<IDescendantService, DescendantService>();
             services.AddScoped<IXmlSitemapService, XmlSitemapService>();
+            services.AddScoped<IFindService, FindService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,6 +56,7 @@ namespace nackademin24_optimizely
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapBlazorHub();
                 endpoints.MapContent();
             });
 

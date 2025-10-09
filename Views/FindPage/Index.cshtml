@@ -1,0 +1,16 @@
+﻿@using nackademin24_optimizely.Models.ViewModels
+@model FindPageViewModel
+
+<form asp-controller="FindPage" asp-action="FindContent" id="find-form" method="post">
+    <input id="find-query" type="search" name="query"/>
+</form>
+
+@if (Model.Result != null)
+{
+    <div>
+        @foreach (var item in await Model.Result)
+        {
+            <h5><a href="@item.Url">@item.Title</a></h5>
+        }
+    </div>
+}

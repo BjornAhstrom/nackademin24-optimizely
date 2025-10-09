@@ -14,7 +14,8 @@ namespace nackademin24_optimizely.Models.Pages;
     [AvailableContentTypes(
         Availability.Specific,
         Include = [
-            typeof(ErrorPage)
+            typeof(ErrorPage),
+            typeof(FindPage),
         ]
     )]
     public class StartPage : SitePageData
